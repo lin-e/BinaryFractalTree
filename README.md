@@ -9,3 +9,4 @@ Version 1
 ![](https://raw.githubusercontent.com/lin-e/BinaryFractalTree/master/Images/3JNUaJs.png)
 Version 2
 ![](https://raw.githubusercontent.com/lin-e/BinaryFractalTree/master/Images/48lIsKf.png)
+![](https://raw.githubusercontent.com/lin-e/BinaryFractalTree/master/Images/iGPB4fm.png)
