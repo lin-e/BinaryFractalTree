@@ -26,8 +26,8 @@ namespace BinaryFractalTree
         {
             InitializeComponent();
             currentCanvas = pictureBox1.CreateGraphics(); // Sets the current canvas to edit
-            imageWidth = pictureBox1.Width;
-            imageHeight = pictureBox1.Height; // Sets the fucking
+            imageWidth = pictureBox1.Width; // Sets the width
+            imageHeight = pictureBox1.Height; // Sets the height
             currentCanvas.SmoothingMode = SmoothingMode.AntiAlias; // Prevents jagged lines
         }
         private void button1_Click(object sender, EventArgs e)
