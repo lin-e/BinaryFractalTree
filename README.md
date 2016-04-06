@@ -5,4 +5,7 @@ I got bored and made this. I decided to challenge myself, and not use any online
 
 # Screenshot(s)
 
+Version 1
 ![](https://raw.githubusercontent.com/lin-e/BinaryFractalTree/master/Images/3JNUaJs.png)
+Version 2
+![](https://raw.githubusercontent.com/lin-e/BinaryFractalTree/master/Images/48lIsKf.png)
