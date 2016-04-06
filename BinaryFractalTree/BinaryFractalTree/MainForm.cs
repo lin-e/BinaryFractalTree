@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Threading;
+using System.Drawing.Drawing2D;
 
 namespace BinaryFractalTree
 {
@@ -16,16 +17,18 @@ namespace BinaryFractalTree
         public static int fractalRuleB = 270; // Default rule for line B
         public static double sizeChangeRule = 0.5; // Default size change
         public int iterationCount = 2; // Default iteration count
-        int imageWidth;
-        int imageHeight;
-        int sizeValue = 5;
-        bool isDrawing = false; // Isn't currently drawing
+        int imageWidth; // Canvas width
+        int imageHeight; // Canvas height
+        int sizeValue = 5; // Length of the original line
+        bool isDrawing; // Isn't currently drawing
+        bool changeThickness; // Setting to change thickness
         public MainForm()
         {
             InitializeComponent();
             currentCanvas = pictureBox1.CreateGraphics(); // Sets the current canvas to edit
             imageWidth = pictureBox1.Width;
-            imageHeight = pictureBox1.Height;
+            imageHeight = pictureBox1.Height; // Sets the fucking
+            currentCanvas.SmoothingMode = SmoothingMode.AntiAlias; // Prevents jagged lines
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -40,7 +43,7 @@ namespace BinaryFractalTree
                 if (checkBox1.Checked) // Only runs if it's set to clear the image
                 {
                     pictureBox1.Image = null; // Clears the image
-                    Helpers.Sleep(3); // Delays operation for 1ms
+                    Helpers.Sleep(5); // Delays operation for 1ms
                 }
                 FractalPoint basePoint = new FractalPoint(this); // Declares the starting point
                 basePoint.currentBearing = 0; // Straight line
@@ -51,6 +54,10 @@ namespace BinaryFractalTree
                 allPoints.Add(basePoint); // Adds the base to the 'endpoints' list
                 for (int i = 0; i < iterationCount; i++) // Loops the specified number of times
                 {
+                    if (changeThickness) // Only runs if it's set to change thickness
+                    {
+                        mainPen.Width = (float)(mainPen.Width * sizeChangeRule); // Changes thickness
+                    }
                     FractalPoint[] pointCopy = allPoints.ToArray(); // Copies all the original points to an array
                     allPoints.Clear(); // Clears the list
                     foreach (FractalPoint singlePoint in pointCopy) // Does the following operations to each item in the list
@@ -69,6 +76,7 @@ namespace BinaryFractalTree
             {
                 Application.DoEvents(); // Prevents freeze
             }
+            mainPen.Width = trackBar6.Value; // Resets thickness
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -109,6 +117,25 @@ namespace BinaryFractalTree
             label10.Text = ((double)sizeValue / (double)10).ToString(); // Sets the start length
             RedrawImage(); // Redraws the image
         }
+        private void trackBar6_Scroll(object sender, EventArgs e)
+        {
+            if (isDrawing) // Prevents changing the size if it's still drawing
+            {
+                return;
+            }
+            try // Prevents crash when trackbar is scrolling too fast
+            {
+                mainPen.Width = trackBar6.Value;
+                label12.Text = mainPen.Width.ToString();
+                RedrawImage(); // Redraws the image
+            }
+            catch { }
+        }
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            changeThickness = checkBox3.Checked; // Changes the settings
+            RedrawImage(); // Redraws the image
+        }
         private void RedrawImage()
         {
             if (checkBox2.Checked) // Only runs if it's set to redraw
@@ -118,7 +145,10 @@ namespace BinaryFractalTree
         }
         private void Draw(FractalPoint toDraw)
         {
-            currentCanvas.DrawLine(mainPen, new Point(toDraw.originPoint.X, imageHeight - toDraw.originPoint.Y), new Point(toDraw.endPoint.X, imageHeight - toDraw.endPoint.Y)); // Flips all points along the X axis as (0, 0) is at top left, versus the bottom left (as is conventional)
+            try // Prevents crash when application is closing mid-render
+            {
+                currentCanvas.DrawLine(mainPen, new Point(toDraw.originPoint.X, imageHeight - toDraw.originPoint.Y), new Point(toDraw.endPoint.X, imageHeight - toDraw.endPoint.Y)); // Flips all points along the X axis as (0, 0) is at top left, versus the bottom left (as is conventional)
+            } catch { }
         }
         public void WriteLine(string toWrite)
         {
@@ -126,7 +156,7 @@ namespace BinaryFractalTree
             {
                 Invoke(new Action(() => // Allows control to be accessed from another thread.
                 {
-                    textBox1.Text += toWrite + Environment.NewLine; // Appends the text, and a new line
+                    textBox1.AppendText(toWrite + Environment.NewLine); // Appends the text, and a new line
                 }));
             } catch { }
         }

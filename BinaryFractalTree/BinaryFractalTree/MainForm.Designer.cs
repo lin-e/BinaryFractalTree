@@ -38,6 +38,10 @@ namespace BinaryFractalTree
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.trackBar6 = new System.Windows.Forms.TrackBar();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.trackBar5 = new System.Windows.Forms.TrackBar();
@@ -59,6 +63,7 @@ namespace BinaryFractalTree
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
@@ -82,7 +87,7 @@ namespace BinaryFractalTree
             this.button1.Location = new System.Drawing.Point(1018, 617);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(234, 23);
-            this.button1.TabIndex = 1;
+            this.button1.TabIndex = 10;
             this.button1.Text = "Generate";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -92,7 +97,7 @@ namespace BinaryFractalTree
             this.button2.Location = new System.Drawing.Point(1018, 588);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(234, 23);
-            this.button2.TabIndex = 2;
+            this.button2.TabIndex = 9;
             this.button2.Text = "Clear";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -102,7 +107,7 @@ namespace BinaryFractalTree
             this.button3.Location = new System.Drawing.Point(1018, 646);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(234, 23);
-            this.button3.TabIndex = 3;
+            this.button3.TabIndex = 11;
             this.button3.Text = "Test";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -113,7 +118,7 @@ namespace BinaryFractalTree
             this.trackBar1.Maximum = 360;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(222, 45);
-            this.trackBar1.TabIndex = 4;
+            this.trackBar1.TabIndex = 7;
             this.trackBar1.Value = 90;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
@@ -137,6 +142,10 @@ namespace BinaryFractalTree
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkBox3);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.trackBar6);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.trackBar5);
@@ -150,15 +159,55 @@ namespace BinaryFractalTree
             this.groupBox1.Controls.Add(this.trackBar2);
             this.groupBox1.Location = new System.Drawing.Point(1018, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(234, 218);
+            this.groupBox1.Size = new System.Drawing.Size(234, 292);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "General";
             // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(9, 269);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(111, 17);
+            this.checkBox3.TabIndex = 6;
+            this.checkBox3.Text = "Change thickness";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 204);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(77, 13);
+            this.label11.TabIndex = 22;
+            this.label11.Text = "Start thickness";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(123, 204);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(13, 13);
+            this.label12.TabIndex = 20;
+            this.label12.Text = "2";
+            // 
+            // trackBar6
+            // 
+            this.trackBar6.Location = new System.Drawing.Point(6, 172);
+            this.trackBar6.Maximum = 32;
+            this.trackBar6.Minimum = 1;
+            this.trackBar6.Name = "trackBar6";
+            this.trackBar6.Size = new System.Drawing.Size(222, 45);
+            this.trackBar6.TabIndex = 3;
+            this.trackBar6.Value = 2;
+            this.trackBar6.Scroll += new System.EventHandler(this.trackBar6_Scroll);
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 156);
+            this.label9.Location = new System.Drawing.Point(6, 153);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(50, 13);
             this.label9.TabIndex = 19;
@@ -179,7 +228,7 @@ namespace BinaryFractalTree
             this.trackBar5.Minimum = 1;
             this.trackBar5.Name = "trackBar5";
             this.trackBar5.Size = new System.Drawing.Size(222, 45);
-            this.trackBar5.TabIndex = 18;
+            this.trackBar5.TabIndex = 2;
             this.trackBar5.Value = 5;
             this.trackBar5.Scroll += new System.EventHandler(this.trackBar5_Scroll);
             // 
@@ -188,10 +237,10 @@ namespace BinaryFractalTree
             this.checkBox2.AutoSize = true;
             this.checkBox2.Checked = true;
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(9, 195);
+            this.checkBox2.Location = new System.Drawing.Point(9, 246);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(117, 17);
-            this.checkBox2.TabIndex = 16;
+            this.checkBox2.TabIndex = 5;
             this.checkBox2.Text = "Redraw on change";
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
@@ -200,17 +249,17 @@ namespace BinaryFractalTree
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(9, 172);
+            this.checkBox1.Location = new System.Drawing.Point(9, 223);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(91, 17);
-            this.checkBox1.TabIndex = 15;
+            this.checkBox1.TabIndex = 4;
             this.checkBox1.Text = "Clear on draw";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 105);
+            this.label5.Location = new System.Drawing.Point(6, 102);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(50, 13);
             this.label5.TabIndex = 14;
@@ -231,7 +280,7 @@ namespace BinaryFractalTree
             this.trackBar3.Minimum = 1;
             this.trackBar3.Name = "trackBar3";
             this.trackBar3.Size = new System.Drawing.Size(222, 45);
-            this.trackBar3.TabIndex = 13;
+            this.trackBar3.TabIndex = 1;
             this.trackBar3.Value = 2;
             this.trackBar3.Scroll += new System.EventHandler(this.trackBar3_Scroll);
             // 
@@ -259,7 +308,7 @@ namespace BinaryFractalTree
             this.trackBar2.Maximum = 100;
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Size = new System.Drawing.Size(222, 45);
-            this.trackBar2.TabIndex = 10;
+            this.trackBar2.TabIndex = 0;
             this.trackBar2.Value = 50;
             this.trackBar2.Scroll += new System.EventHandler(this.trackBar2_Scroll);
             // 
@@ -268,7 +317,7 @@ namespace BinaryFractalTree
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.trackBar1);
-            this.groupBox2.Location = new System.Drawing.Point(1018, 236);
+            this.groupBox2.Location = new System.Drawing.Point(1018, 310);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(234, 72);
             this.groupBox2.TabIndex = 16;
@@ -280,7 +329,7 @@ namespace BinaryFractalTree
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.trackBar4);
-            this.groupBox3.Location = new System.Drawing.Point(1018, 314);
+            this.groupBox3.Location = new System.Drawing.Point(1018, 388);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(234, 72);
             this.groupBox3.TabIndex = 17;
@@ -311,16 +360,16 @@ namespace BinaryFractalTree
             this.trackBar4.Maximum = 360;
             this.trackBar4.Name = "trackBar4";
             this.trackBar4.Size = new System.Drawing.Size(222, 45);
-            this.trackBar4.TabIndex = 4;
+            this.trackBar4.TabIndex = 8;
             this.trackBar4.Value = 270;
             this.trackBar4.Scroll += new System.EventHandler(this.trackBar4_Scroll);
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.textBox1);
-            this.groupBox4.Location = new System.Drawing.Point(1018, 392);
+            this.groupBox4.Location = new System.Drawing.Point(1018, 466);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(234, 190);
+            this.groupBox4.Size = new System.Drawing.Size(234, 116);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Log";
@@ -332,7 +381,7 @@ namespace BinaryFractalTree
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(222, 165);
+            this.textBox1.Size = new System.Drawing.Size(222, 91);
             this.textBox1.TabIndex = 0;
             // 
             // MainForm
@@ -357,6 +406,7 @@ namespace BinaryFractalTree
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
@@ -399,5 +449,9 @@ namespace BinaryFractalTree
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TrackBar trackBar5;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TrackBar trackBar6;
     }
 }
