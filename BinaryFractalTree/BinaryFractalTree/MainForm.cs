@@ -117,13 +117,9 @@ namespace BinaryFractalTree
     }
     public static class Helpers
     {
-        public static double Degrees(this double inputDouble)
-        {
-            return inputDouble * (Math.PI / 180); // Converts from radians to degrees
-        }
         public static double Degrees(this int inputDouble)
         {
-            return Convert.ToDouble(inputDouble).Degrees(); // Same as above, albeit with int as the input value
+            return inputDouble * (Math.PI / 180); // Converts from radians to degrees
         }
         public static void Sleep(int timeToSleep)
         {
@@ -158,11 +154,9 @@ namespace BinaryFractalTree
         private void Calculate()
         {
             int xAngle = (270 - currentBearing) * -1; // Finds the angle to determine the X coordinate
-            double xCos = Math.Cos(xAngle.Degrees()); // Works out the cosine of the angle
-            int xPoint = originPoint.X - Convert.ToInt32(xCos * lineLength); // Does the calculation for the X size, to calculate the new point
-            int yAngle = (90 - xAngle); // Finds the angle to determine the Y coordinate
-            double yCos = Math.Cos(yAngle.Degrees()); // Works out the cosine of the angle
-            int yPoint = originPoint.Y + Convert.ToInt32(yCos * lineLength); // Does the calculation for the Y size, to calculate the new point
+            int xPoint = originPoint.X - Convert.ToInt32(Math.Cos(xAngle.Degrees()) * lineLength); // Does the calculation for the X size, to calculate the new point
+            int yAngle = 90 - xAngle; // Finds the angle to determine the Y coordinate
+            int yPoint = originPoint.Y + Convert.ToInt32(Math.Cos((90 - xAngle).Degrees()) * lineLength); // Does the calculation for the Y size, to calculate the new point
             endPoint = new Point(xPoint, yPoint); // Creates a new endpoint
             parentForm.WriteLine("{0}, {1} [{2} {3}]", xPoint.ToString(), yPoint.ToString(), xAngle.ToString(), yAngle.ToString()); // Logs everything to the 'console'
         }
