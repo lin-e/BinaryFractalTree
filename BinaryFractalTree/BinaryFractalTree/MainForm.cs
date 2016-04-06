@@ -37,6 +37,7 @@ namespace BinaryFractalTree
                 return; // Stops the flow of code at this point, to prevent issues with the list
             }
             isDrawing = true; // Starts drawing
+            mainPen.Width = trackBar6.Value; // Sets the pen value, in case it isn't set before
             new Thread(() => // Draws in new thread
             {
                 allPoints.Clear(); // Resets the list
@@ -119,14 +120,14 @@ namespace BinaryFractalTree
         }
         private void trackBar6_Scroll(object sender, EventArgs e)
         {
+            label12.Text = trackBar6.Value.ToString(); // Updates the label
             if (isDrawing) // Prevents changing the size if it's still drawing
             {
                 return;
             }
             try // Prevents crash when trackbar is scrolling too fast
             {
-                mainPen.Width = trackBar6.Value;
-                label12.Text = mainPen.Width.ToString();
+                mainPen.Width = trackBar6.Value; // Sets pen width
                 RedrawImage(); // Redraws the image
             }
             catch { }
