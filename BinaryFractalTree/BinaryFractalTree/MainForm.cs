@@ -48,9 +48,9 @@ namespace BinaryFractalTree
                 }
                 FractalPoint basePoint = new FractalPoint(this); // Declares the starting point
                 basePoint.currentBearing = 0; // Straight line
-                basePoint.originPoint = new Point(Convert.ToInt32(imageWidth / 2), 0); // Start point centred on canvas, at the base
-                basePoint.endPoint = new Point(Convert.ToInt32(imageWidth / 2), Convert.ToInt32(imageHeight / (1 / (sizeValue / (double)10)))); // Finds the location of the endpoint by dividing the canvas by the reciprocal of the base height setting
-                basePoint.lineLength = Convert.ToInt32(imageHeight / (1 / (sizeValue / (double)10))); // Calculates the line length, using the same logic as above
+                basePoint.originPoint = new Point((int)Math.Round(imageWidth / (double)2), 0); // Start point centred on canvas, at the base
+                basePoint.endPoint = new Point((int)Math.Round(imageWidth / (double)2), (int)Math.Round(imageHeight / (1 / (sizeValue / (double)10)))); // Finds the location of the endpoint by dividing the canvas by the reciprocal of the base height setting
+                basePoint.lineLength = (int)Math.Round(imageHeight / (1 / (sizeValue / (double)10))); // Calculates the line length, using the same logic as above
                 Draw(basePoint); // Draws the original point
                 allPoints.Add(basePoint); // Adds the base to the 'endpoints' list
                 for (int i = 0; i < iterationCount; i++) // Loops the specified number of times
@@ -194,7 +194,7 @@ namespace BinaryFractalTree
         {
             originPoint = originalPoint.endPoint; // Takes the origin point as the the endpoint of the parent point (trust me, this makes sense)
             parentForm = originalPoint.parentForm; // Sets the parent form from the parent point
-            lineLength = Convert.ToInt32(originalPoint.lineLength * MainForm.sizeChangeRule); // Finds the length of this line
+            lineLength = (int)Math.Round(originalPoint.lineLength * MainForm.sizeChangeRule); // Finds the length of this line
             currentBearing = originalPoint.currentBearing + newBearing; // Sets the current bearing to be the original bearing added onto the rule
             Calculate(); // Begins to calculate the location of the end point
         }
@@ -205,9 +205,9 @@ namespace BinaryFractalTree
         private void Calculate()
         {
             int xAngle = (270 - currentBearing) * -1; // Finds the angle to determine the X coordinate
-            int xPoint = originPoint.X - Convert.ToInt32(Math.Cos(xAngle.Degrees()) * lineLength); // Does the calculation for the X size, to calculate the new point
+            int xPoint = originPoint.X - (int)Math.Round(Math.Cos(xAngle.Degrees()) * lineLength); // Does the calculation for the X size, to calculate the new point
             int yAngle = 90 - xAngle; // Finds the angle to determine the Y coordinate
-            int yPoint = originPoint.Y + Convert.ToInt32(Math.Cos((90 - xAngle).Degrees()) * lineLength); // Does the calculation for the Y size, to calculate the new point
+            int yPoint = originPoint.Y + (int)Math.Round(Math.Cos((90 - xAngle).Degrees()) * lineLength); // Does the calculation for the Y size, to calculate the new point
             endPoint = new Point(xPoint, yPoint); // Creates a new endpoint
             parentForm.WriteLine("{0}, {1} [{2} {3}]", xPoint.ToString(), yPoint.ToString(), xAngle.ToString(), yAngle.ToString()); // Logs everything to the 'console'
         }
